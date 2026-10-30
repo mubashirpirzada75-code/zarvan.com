@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZARVAN | Luxury Apparel Karachi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#e5c158',
+                            500: '#d4af37',
+                            600: '#b89628',
+                        },
+                        dark: {
+                            800: '#18181b',
+                            900: '#0f0f11',
+                            950: '#09090b',
+                        }
+                    },
+                    fontFamily: {
+                        brand: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f0f11; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+    </style>
+</head>
+<body class="bg-dark-950 text-gray-100 font-sans min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+
+    <!-- Mandatory Service Banner -->
+    <div class="bg-gradient-to-r from-amber-950 via-gold-600 to-amber-950 text-black py-2 px-4 text-xs md:text-sm font-bold tracking-wide shadow-md flex items-center justify-center gap-2 text-center">
+        <i class="fa-solid fa-truck-fast"></i>
+        <span>Notice: This website is strictly for Karachi only. All over Karachi areas delivery available!</span>
+    </div>
+
+    <!-- Live Announcement Bar (Managed by Creator) -->
+    <div id="liveAnnouncementBar" class="bg-dark-900 border-b border-gold-500/20 py-2 px-4 text-xs text-center text-gold-400 flex items-center justify-center gap-2">
+        <span class="bg-gold-500/10 text-gold-400 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border border-gold-500/30">Store News</span>
+        <span id="liveAnnouncementText">Welcome to ZARVAN Official Store! Special Collection Live for Karachi.</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-dark-900/95 backdrop-blur-md border-b border-gold-500/20 px-4 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            
+            <!-- Left Controls: Section Drawer & Support Modal & Creator Access -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="menuToggleBtn" class="p-2.5 text-gold-500 hover:text-white rounded-xl bg-dark-800 border border-gold-500/20 transition flex items-center gap-2">
+                    <i class="fa-solid fa-ellipsis-vertical text-lg px-1"></i>
+                    <span class="hidden sm:inline text-xs font-semibold uppercase tracking-wider">Sections</span>
+                </button>
+
+                <button onclick="openSupportModal()" class="p-2.5 text-xs font-semibold text-emerald-400 bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/30 rounded-xl transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span class="hidden sm:inline">Customer Service</span>
+                </button>
+
+                <button id="creatorModalBtn" class="p-2.5 text-xs font-bold tracking-wider text-black bg-gold-500 hover:bg-gold-400 rounded-xl transition flex items-center gap-2 shadow-lg shadow-gold-500/10">
+                    <i class="fa-solid fa-lock text-sm"></i>
+                    <span class="hidden sm:inline">Creator Access</span>
+                </button>
+            </div>
+
+            <!-- Brand Logo -->
+            <a href="#" onclick="filterCategory('Women')" class="text-center">
+                <h1 class="font-brand text-2xl sm:text-4xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-yellow-100 to-gold-600">
+                    ZARVAN
+                </h1>
+                <p class="text-[9px] sm:text-[10px] tracking-[0.3em] text-gray-400 font-light -mt-1 uppercase">Karachi Couture</p>
+            </a>
+
+            <!-- Right Controls: Category Quick Switch & Cart Button -->
+            <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-1 bg-dark-800 p-1 rounded-xl border border-gray-800 text-xs font-medium">
+                    <button onclick="filterCategory('Women')" class="cat-pill active px-3 py-1.5 rounded-lg bg-gold-500 text-black font-bold transition">Women</button>
+                    <button onclick="filterCategory('Men')" class="cat-pill px-3 py-1.5 rounded-lg text-gray-300 hover:text-gold-400 transition">Men</button>
+                    <button onclick="filterCategory('Kids')" class="cat-pill px-3 py-1.5 rounded-lg text-gray-300 hover:text-gold-400 transition">Kids</button>
+                    <button onclick="filterCategory('All')" class="cat-pill px-3 py-1.5 rounded-lg text-gray-300 hover:text-gold-400 transition">All Items</button>
+                </div>
+
+                <button id="cartBtn" class="relative p-2.5 bg-dark-800 border border-gold-500/30 text-gold-400 hover:text-white rounded-xl transition flex items-center justify-center">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-dark-950">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Side Category Drawer Menu -->
+    <div id="sidebarMenu" class="fixed inset-0 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="sidebarOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative w-80 max-w-[85vw] h-full bg-dark-900 border-r border-gold-500/20 p-6 flex flex-col justify-between z-10">
+            <div>
+                <div class="flex items-center justify-between pb-5 border-b border-gray-800">
+                    <span class="font-brand text-xl text-gold-400 font-bold">ZARVAN SECTIONS</span>
+                    <button id="closeSidebarBtn" class="text-gray-400 hover:text-white text-xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="mt-6 space-y-2">
+                    <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest px-3 mb-2">Select Section</p>
+                    <button onclick="filterCategory('Women')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-dark-800 text-gray-200 hover:text-gold-400 font-medium flex items-center justify-between transition border border-transparent hover:border-gold-500/20">
+                        <span><i class="fa-solid fa-person-dress mr-3 text-pink-400"></i> Women Section</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
+                    </button>
+                    <button onclick="filterCategory('Men')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-dark-800 text-gray-200 hover:text-gold-400 font-medium flex items-center justify-between transition border border-transparent hover:border-gold-500/20">
+                        <span><i class="fa-solid fa-user-tie mr-3 text-blue-400"></i> Men Section</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
+                    </button>
+                    <button onclick="filterCategory('Kids')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-dark-800 text-gray-200 hover:text-gold-400 font-medium flex items-center justify-between transition border border-transparent hover:border-gold-500/20">
+                        <span><i class="fa-solid fa-child mr-3 text-amber-400"></i> Kids Section</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
+                    </button>
+                    <button onclick="filterCategory('All')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-dark-800 text-gray-200 hover:text-gold-400 font-medium flex items-center justify-between transition border border-transparent hover:border-gold-500/20">
+                        <span><i class="fa-solid fa-border-all mr-3 text-purple-400"></i> All Collection</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-dark-800/80 border border-gold-500/20 text-xs text-gray-400 space-y-1.5">
+                <p class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot"></i> Karachi Exclusive</p>
+                <p>Deliveries strictly across all sectors & areas in Karachi city.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Store Section -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-1 w-full">
+        
+        <!-- Store Banner -->
+        <div class="relative rounded-3xl overflow-hidden mb-8 border border-gold-500/20 bg-dark-900 p-6 sm:p-10">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-900/90 to-transparent z-10"></div>
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity" alt="Fashion Cover">
+            
+            <div class="relative z-20 max-w-xl">
+                <span class="inline-block bg-gold-500/10 text-gold-400 border border-gold-500/30 text-[11px] px-3 py-1 rounded-full font-bold uppercase tracking-widest mb-3">Karachi Exclusive Store</span>
+                <h2 id="activeCategoryHeading" class="font-brand text-3xl sm:text-5xl font-bold text-white mb-2">Women Collection</h2>
+                <p class="text-gray-300 text-xs sm:text-sm">Explore premium stitched & unstitched suits in Small, Medium, Large, Extra Large. All Karachi cash on delivery.</p>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
+            <div class="relative w-full sm:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                <input type="text" id="searchInput" placeholder="Search product title..." class="w-full bg-dark-900 border border-gray-800 text-xs text-gray-200 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-gold-500/50 transition">
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <span class="text-xs text-gray-400 font-medium">Category:</span>
+                <select id="categorySelectFilter" onchange="filterCategory(this.value)" class="bg-dark-900 border border-gray-800 text-xs text-gold-400 rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500">
+                    <option value="Women">Women Section</option>
+                    <option value="Men">Men Section</option>
+                    <option value="Kids">Kids Section</option>
+                    <option value="All">All Categories</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic Content -->
+        </div>
+
+        <div id="emptyGridMsg" class="hidden text-center py-16 bg-dark-900/50 rounded-2xl border border-gray-800">
+            <i class="fa-solid fa-shirt text-4xl text-gray-600 mb-3"></i>
+            <h3 class="text-lg font-bold text-gray-300">No items available in this section</h3>
+            <p class="text-xs text-gray-500 mt-1">Open Creator Access panel to add new products.</p>
+        </div>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="cartOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative w-full max-w-md h-full bg-dark-900 border-l border-gold-500/20 ml-auto flex flex-col justify-between z-10">
+            
+            <div class="p-5 border-b border-gray-800 flex items-center justify-between bg-dark-950">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-gold-500 text-xl"></i>
+                    <h3 class="font-brand text-lg font-bold text-white">Your Shopping Bag</h3>
+                </div>
+                <button id="closeCartBtn" class="text-gray-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cartItemsList" class="p-5 space-y-4 overflow-y-auto flex-1">
+                <!-- JS populated -->
+            </div>
+
+            <!-- Cart Checkout Details & Multi-WhatsApp Selection -->
+            <div class="p-5 border-t border-gray-800 bg-dark-950 space-y-4">
+                
+                <div class="space-y-3 bg-dark-900 p-3.5 rounded-xl border border-gray-800">
+                    <div>
+                        <label class="block text-[11px] font-bold text-gold-400 uppercase tracking-wider mb-1">Select Karachi Delivery Area:</label>
+                        <select id="karachiAreaSelect" onchange="updateCartTotals()" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-gold-500">
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold text-emerald-400 uppercase tracking-wider mb-1">Order Notification WhatsApp Line:</label>
+                        <select id="whatsappTargetSelect" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2 text-xs text-emerald-400 font-semibold focus:outline-none">
+                            <option value="923337552183">Line 1: +92 333 7552183</option>
+                            <option value="923337552987">Line 2: +92 333 7552987</option>
+                            <option value="923303970802">Line 3: +92 330 3970802</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="custName" placeholder="Your Full Name" class="bg-dark-950 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none">
+                        <input type="tel" id="custPhone" placeholder="Phone Number" class="bg-dark-950 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none">
+                    </div>
+                    <input type="text" id="custAddress" placeholder="Address (House/Street/Sector/Area in Karachi)" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none">
+                </div>
+
+                <div class="space-y-1.5 text-xs text-gray-400 border-t border-gray-800 pt-3">
+                    <div class="flex justify-between">
+                        <span>Items Subtotal</span>
+                        <span id="subtotalText" class="text-gray-200 font-semibold">RS. 0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Karachi Delivery Fee</span>
+                        <span id="deliveryFeeText" class="text-gold-400 font-semibold">RS. 0</span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-gray-800">
+                        <span>Total Payable Amount</span>
+                        <span id="totalPayableText" class="text-gold-400">RS. 0</span>
+                    </div>
+                </div>
+
+                <button onclick="handleCheckout()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Send Order Notification via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Service Modal -->
+    <div id="supportModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="relative w-full max-w-md bg-dark-900 border border-emerald-500/30 rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            
+            <div>
+                <h3 class="font-brand text-xl font-bold text-white">ZARVAN Customer Support</h3>
+                <p class="text-xs text-gray-400 mt-1">Directly contact our team members on WhatsApp for orders, sizes, or Karachi delivery queries:</p>
+            </div>
+
+            <div class="space-y-2.5 pt-2">
+                <a href="https://wa.me/923337552183?text=Hello%20ZARVAN,%20I%20have%20an%20inquiry." target="_blank" class="w-full bg-dark-950 hover:bg-dark-800 border border-emerald-500/30 text-emerald-400 p-3 rounded-xl text-xs font-bold flex items-center justify-between transition">
+                    <span><i class="fa-brands fa-whatsapp text-base mr-2"></i> WhatsApp Line 1</span>
+                    <span class="font-mono text-gray-200">+92 333 7552183</span>
+                </a>
+                <a href="https://wa.me/923337552987?text=Hello%20ZARVAN,%20I%20have%20an%20inquiry." target="_blank" class="w-full bg-dark-950 hover:bg-dark-800 border border-emerald-500/30 text-emerald-400 p-3 rounded-xl text-xs font-bold flex items-center justify-between transition">
+                    <span><i class="fa-brands fa-whatsapp text-base mr-2"></i> WhatsApp Line 2</span>
+                    <span class="font-mono text-gray-200">+92 333 7552987</span>
+                </a>
+                <a href="https://wa.me/923303970802?text=Hello%20ZARVAN,%20I%20have%20an%20inquiry." target="_blank" class="w-full bg-dark-950 hover:bg-dark-800 border border-emerald-500/30 text-emerald-400 p-3 rounded-xl text-xs font-bold flex items-center justify-between transition">
+                    <span><i class="fa-brands fa-whatsapp text-base mr-2"></i> WhatsApp Line 3</span>
+                    <span class="font-mono text-gray-200">+92 330 3970802</span>
+                </a>
+            </div>
+
+            <button onclick="closeSupportModal()" class="w-full bg-dark-800 text-gray-400 py-2.5 rounded-xl text-xs font-semibold hover:text-white mt-2">Close Window</button>
+        </div>
+    </div>
+
+    <!-- Security PIN Lock Modal -->
+    <div id="pinLockModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="relative w-full max-w-sm bg-dark-900 border border-gold-500/30 rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-gold-500/10 text-gold-400 border border-gold-500/30 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            
+            <div>
+                <h3 class="font-brand text-lg font-bold text-white">Creator Access Verification</h3>
+                <p class="text-xs text-gray-400 mt-1">Please enter your Security PIN code to manage ZARVAN website.</p>
+            </div>
+
+            <div class="space-y-2">
+                <input type="password" id="adminPinInput" maxlength="10" placeholder="Enter Security PIN" class="w-full bg-dark-950 border border-gray-700 text-center font-mono text-lg text-gold-400 rounded-xl py-2.5 focus:border-gold-500 focus:outline-none tracking-widest">
+                <p class="text-[10px] text-gray-500">(Default PIN: <span class="text-gold-400 font-bold">2026</span>)</p>
+            </div>
+
+            <div class="flex gap-2 pt-2">
+                <button onclick="closePinModal()" class="w-1/2 bg-dark-800 hover:bg-dark-700 text-gray-300 py-2.5 rounded-xl text-xs font-semibold">Cancel</button>
+                <button onclick="verifyAdminPin()" class="w-1/2 bg-gold-500 hover:bg-gold-400 text-black py-2.5 rounded-xl text-xs font-bold">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creator Dashboard Modal -->
+    <div id="creatorModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-dark-900 border border-gold-500/30 rounded-2xl shadow-2xl overflow-hidden my-6">
+            
+            <div class="p-5 bg-dark-950 border-b border-gray-800 flex items-center justify-between">
+                <div>
+                    <h3 class="font-brand text-lg font-bold text-gold-400 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> ZARVAN Creator Dashboard
+                    </h3>
+                    <p class="text-xs text-gray-400">Inventory control, Out of stock toggles, Announcement banner & Karachi area delivery charges</p>
+                </div>
+                <button id="closeCreatorBtn" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
+                
+                <!-- PIN Security Settings -->
+                <div class="bg-dark-800/60 p-4 rounded-xl border border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider">Change Admin Security PIN</h4>
+                        <p class="text-[11px] text-gray-400">Update your secret pin to ensure only you can edit store data.</p>
+                    </div>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <input type="text" id="newPinInput" placeholder="New PIN" class="bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white outline-none w-32 focus:border-gold-500">
+                        <button onclick="updateAdminPin()" class="bg-gold-500/20 text-gold-400 border border-gold-500/30 hover:bg-gold-500 hover:text-black font-bold px-3 py-2 rounded-lg text-xs transition whitespace-nowrap">
+                            Save PIN
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Update Top Announcement -->
+                <div class="bg-dark-800/60 p-5 rounded-xl border border-gray-800 space-y-3">
+                    <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-bullhorn"></i> Store Top Announcement Post
+                    </h4>
+                    <div class="flex gap-2">
+                        <input type="text" id="adminAnnouncementInput" placeholder="e.g. New Fancy Lawn Suits Added! Express Karachi Delivery." class="flex-1 bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-500">
+                        <button onclick="postAnnouncement()" class="bg-gold-500 hover:bg-gold-400 text-black font-bold px-4 py-2.5 rounded-lg text-xs transition whitespace-nowrap">
+                            Update
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add Clothes Form -->
+                <div class="bg-dark-800/60 p-5 rounded-xl border border-gray-800">
+                    <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle"></i> Add New Clothes Item
+                    </h4>
+
+                    <form id="addProductForm" onsubmit="saveNewProduct(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Product Title</label>
+                            <input type="text" id="prodTitle" required placeholder="e.g. Silk Stitched Shirt" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:border-gold-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Category / Section</label>
+                            <select id="prodCategory" required class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:border-gold-500 outline-none">
+                                <option value="Women">Women Section</option>
+                                <option value="Men">Men Section</option>
+                                <option value="Kids">Kids Section</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Price (PKR)</label>
+                            <input type="number" id="prodPrice" min="0" required placeholder="e.g. 4500" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:border-gold-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Stock Quantity</label>
+                            <input type="number" id="prodStock" min="0" required placeholder="e.g. 10" class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:border-gold-500 outline-none">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1">Image URL</label>
+                            <input type="url" id="prodImage" required placeholder="https://images.unsplash.com/..." class="w-full bg-dark-950 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:border-gold-500 outline-none">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-2">Available Sizes:</label>
+                            <div class="flex flex-wrap gap-4 text-xs text-gray-300">
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" value="Small (S)" class="size-checkbox rounded accent-gold-500" checked> Small (S)
+                                </label>
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" value="Medium (M)" class="size-checkbox rounded accent-gold-500" checked> Medium (M)
+                                </label>
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" value="Large (L)" class="size-checkbox rounded accent-gold-500" checked> Large (L)
+                                </label>
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" value="Extra Large (XL)" class="size-checkbox rounded accent-gold-500" checked> Extra Large (XL)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 pt-1">
+                            <button type="submit" class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold py-2.5 rounded-lg text-xs uppercase tracking-wider transition">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> Save Item To Store
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Stock Toggle Table -->
+                <div class="bg-dark-800/60 p-5 rounded-xl border border-gray-800">
+                    <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-stacked"></i> Inventory & Stock Status Switch
+                    </h4>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-dark-950 uppercase text-gray-400 text-[10px]">
+                                <tr>
+                                    <th class="p-3">Item Title</th>
+                                    <th class="p-3">Category</th>
+                                    <th class="p-3">Price</th>
+                                    <th class="p-3">Stock Qty</th>
+                                    <th class="p-3">Out Of Stock Toggle</th>
+                                    <th class="p-3 text-right">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="creatorInventoryBody" class="divide-y divide-gray-800">
+                                <!-- JS populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Karachi Delivery Rates Manager -->
+                <div class="bg-dark-800/60 p-5 rounded-xl border border-gray-800">
+                    <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot"></i> Delivery Charges Manager (Karachi Areas)
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="adminAreaRatesList">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-gold-500 text-black px-4 py-3 rounded-xl shadow-2xl font-bold text-xs flex items-center gap-2 pointer-events-none">
+        <i class="fa-solid fa-circle-info text-sm"></i>
+        <span id="toastMsg">Notification message</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-gold-500/20 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <h2 class="font-brand text-lg font-bold text-gold-400">ZARVAN COUTURE</h2>
+            <p class="max-w-md mx-auto text-gray-400">Solely serving Karachi with premium Women, Men & Kids Pakistani apparel. Fast delivery across all Karachi sectors.</p>
+            
+            <div class="pt-2 border-t border-gray-800 max-w-xl mx-auto">
+                <p class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider mb-2">WhatsApp Customer Support Lines:</p>
+                <div class="flex flex-wrap justify-center gap-3 text-xs text-gray-300">
+                    <a href="https://wa.me/923337552183" target="_blank" class="hover:text-emerald-400 font-mono"><i class="fa-brands fa-whatsapp text-emerald-400"></i> +92 333 7552183</a>
+                    <a href="https://wa.me/923337552987" target="_blank" class="hover:text-emerald-400 font-mono"><i class="fa-brands fa-whatsapp text-emerald-400"></i> +92 333 7552987</a>
+                    <a href="https://wa.me/923303970802" target="_blank" class="hover:text-emerald-400 font-mono"><i class="fa-brands fa-whatsapp text-emerald-400"></i> +92 330 3970802</a>
+                </div>
+            </div>
+
+            <p class="text-gray-600 pt-2">&copy; <span id="year"></span> ZARVAN Karachi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Application Script -->
+    <script>
+        const defaultProducts = [
+            {
+                id: 101,
+                title: "Luxury Embroidered Stitched Suit",
+                category: "Women",
+                price: 5400,
+                image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=800&auto=format&fit=crop",
+                sizes: ["Small (S)", "Medium (M)", "Large (L)"],
+                stock: 8,
+                isOutOfStock: false
+            },
+            {
+                id: 102,
+                title: "Silk Velvet Printed Kurti",
+                category: "Women",
+                price: 4200,
+                image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=800&auto=format&fit=crop",
+                sizes: ["Small (S)", "Medium (M)", "Large (L)", "Extra Large (XL)"],
+                stock: 5,
+                isOutOfStock: false
+            },
+            {
+                id: 103,
+                title: "Men Premium Cotton Kurta Set",
+                category: "Men",
+                price: 3800,
+                image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=800&auto=format&fit=crop",
+                sizes: ["Medium (M)", "Large (L)", "Extra Large (XL)"],
+                stock: 10,
+                isOutOfStock: false
+            },
+            {
+                id: 104,
+                title: "Kids Festive Suit",
+                category: "Kids",
+                price: 2800,
+                image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=800&auto=format&fit=crop",
+                sizes: ["Small (S)", "Medium (M)"],
+                stock: 0,
+                isOutOfStock: true
+            }
+        ];
+
+        const defaultKarachiAreas = [
+            { name: "Clifton & DHA (Phases 1-8)", fee: 200 },
+            { name: "Gulshan-e-Iqbal & Johar", fee: 250 },
+            { name: "Nazimabad & North Nazimabad", fee: 250 },
+            { name: "Saddar, PECHS & Tariq Road", fee: 200 },
+            { name: "Federal B Area & North Karachi", fee: 250 },
+            { name: "Malir, Model Colony & Airport", fee: 350 },
+            { name: "Korangi, Landhi & Defense View", fee: 300 },
+            { name: "Scheme 33, Saadi Town & Superhighway", fee: 350 },
+            { name: "Lyari, Garden, West Wharf & Others", fee: 300 }
+        ];
+
+        // State variables
+        let products = JSON.parse(localStorage.getItem('zarvan_products')) || defaultProducts;
+        let karachiAreas = JSON.parse(localStorage.getItem('zarvan_areas')) || defaultKarachiAreas;
+        let liveAnnouncement = localStorage.getItem('zarvan_announcement') || "Welcome to ZARVAN Official Store! Fast Delivery Across Karachi.";
+        let adminPin = localStorage.getItem('zarvan_admin_pin') || "2026";
+
+        let cart = [];
+        let currentFilter = 'Women';
+
+        // DOM elements
+        const productGrid = document.getElementById('productGrid');
+        const emptyGridMsg = document.getElementById('emptyGridMsg');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartBtn = document.getElementById('cartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartCountBadge = document.getElementById('cartCountBadge');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const creatorModal = document.getElementById('creatorModal');
+        const creatorModalBtn = document.getElementById('creatorModalBtn');
+        const closeCreatorBtn = document.getElementById('closeCreatorBtn');
+        const pinLockModal = document.getElementById('pinLockModal');
+        const adminPinInput = document.getElementById('adminPinInput');
+        const supportModal = document.getElementById('supportModal');
+        const searchInput = document.getElementById('searchInput');
+
+        // Startup Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').innerText = new Date().getFullYear();
+            document.getElementById('liveAnnouncementText').innerText = liveAnnouncement;
+            document.getElementById('adminAnnouncementInput').value = liveAnnouncement;
+
+            populateAreaDropdown();
+            renderProducts();
+            renderCart();
+            renderCreatorInventory();
+            renderAdminAreaRates();
+        });
+
+        // Modals & Menu Toggles
+        menuToggleBtn.addEventListener('click', () => sidebarMenu.classList.remove('-translate-x-full'));
+        closeSidebarBtn.addEventListener('click', () => sidebarMenu.classList.add('-translate-x-full'));
+        sidebarOverlay.addEventListener('click', () => sidebarMenu.classList.add('-translate-x-full'));
+
+        cartBtn.addEventListener('click', () => cartDrawer.classList.remove('translate-x-full'));
+        closeCartBtn.addEventListener('click', () => cartDrawer.classList.add('translate-x-full'));
+        cartOverlay.addEventListener('click', () => cartDrawer.classList.add('translate-x-full'));
+
+        creatorModalBtn.addEventListener('click', openPinModal);
+        closeCreatorBtn.addEventListener('click', () => creatorModal.classList.add('hidden'));
+
+        function openSupportModal() { supportModal.classList.remove('hidden'); }
+        function closeSupportModal() { supportModal.classList.add('hidden'); }
+
+        // PIN Security Lock Functions
+        function openPinModal() {
+            adminPinInput.value = '';
+            pinLockModal.classList.remove('hidden');
+            setTimeout(() => adminPinInput.focus(), 100);
+        }
+
+        function closePinModal() { pinLockModal.classList.add('hidden'); }
+
+        function verifyAdminPin() {
+            const inputVal = adminPinInput.value.trim();
+            if (inputVal === adminPin) {
+                pinLockModal.classList.add('hidden');
+                creatorModal.classList.remove('hidden');
+                showToast("Creator Access Granted");
+            } else {
+                showToast("Incorrect Security PIN!");
+                adminPinInput.value = '';
+                adminPinInput.focus();
+            }
+        }
+
+        function updateAdminPin() {
+            const newPin = document.getElementById('newPinInput').value.trim();
+            if (newPin.length < 3) {
+                showToast("PIN code must be at least 3 characters!");
+                return;
+            }
+            adminPin = newPin;
+            saveData();
+            document.getElementById('newPinInput').value = '';
+            showToast("Admin PIN successfully changed!");
+        }
+
+        function saveData() {
+            localStorage.setItem('zarvan_products', JSON.stringify(products));
+            localStorage.setItem('zarvan_areas', JSON.stringify(karachiAreas));
+            localStorage.setItem('zarvan_announcement', liveAnnouncement);
+            localStorage.setItem('zarvan_admin_pin', adminPin);
+        }
+
+        function postAnnouncement() {
+            const inputVal = document.getElementById('adminAnnouncementInput').value.trim();
+            if (!inputVal) {
+                showToast("Enter announcement text");
+                return;
+            }
+            liveAnnouncement = inputVal;
+            document.getElementById('liveAnnouncementText').innerText = liveAnnouncement;
+            saveData();
+            showToast("Store announcement updated!");
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            document.getElementById('activeCategoryHeading').innerText = cat === 'All' ? 'All Collection' : `${cat} Collection`;
+            document.getElementById('categorySelectFilter').value = cat;
+
+            document.querySelectorAll('.cat-pill').forEach(pill => {
+                if (pill.innerText.includes(cat) || (cat === 'All' && pill.innerText.includes('All'))) {
+                    pill.classList.add('bg-gold-500', 'text-black', 'font-bold');
+                    pill.classList.remove('text-gray-300');
+                } else {
+                    pill.classList.remove('bg-gold-500', 'text-black', 'font-bold');
+                    pill.classList.add('text-gray-300');
+                }
+            });
+
+            sidebarMenu.classList.add('-translate-x-full');
+            renderProducts();
+        }
+
+        searchInput.addEventListener('input', renderProducts);
+
+        function renderProducts() {
+            const query = searchInput.value.toLowerCase().trim();
+            const filtered = products.filter(p => {
+                const matchesCat = (currentFilter === 'All' || p.category === currentFilter);
+                const matchesSearch = p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            productGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyGridMsg.classList.remove('hidden');
+                return;
+            } else {
+                emptyGridMsg.classList.add('hidden');
+            }
+
+            filtered.forEach(p => {
+                const isOut = p.isOutOfStock || p.stock <= 0;
+                const card = document.createElement('div');
+                card.className = "bg-dark-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between group";
+
+                const sizesHTML = p.sizes.map(size => `<span class="bg-dark-800 text-gray-300 border border-gray-700 text-[10px] font-bold px-2 py-0.5 rounded">${size}</span>`).join(' ');
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/5] bg-dark-950">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${isOut ? 'opacity-40 grayscale' : ''}" onerror="this.src='https://placehold.co/600x800/18181b/d4af37?text=ZARVAN+Fashion'">
+                        
+                        <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+                            <span class="bg-black/80 backdrop-blur-md text-gold-400 text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-full uppercase border border-gold-500/30">
+                                ${p.category}
+                            </span>
+                            ${isOut ? `<span class="bg-red-600 text-white text-[10px] font-extrabold tracking-wider px-2.5 py-1 rounded-full uppercase shadow-lg">OUT OF STOCK</span>` : ''}
+                        </div>
+
+                        <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gray-700 text-[11px] text-gray-300">
+                            Available Qty: <span class="font-bold text-white">${isOut ? 0 : p.stock}</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-bold text-sm text-gray-100 group-hover:text-gold-400 transition">${p.title}</h3>
+                            <p class="text-[11px] text-gray-400 mt-1">Available Sizes:</p>
+                            <div class="flex flex-wrap gap-1 mt-1.5">
+                                ${sizesHTML}
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-gray-800">
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <span class="text-[9px] text-gray-400 block uppercase tracking-wider">Price</span>
+                                    <span class="font-extrabold text-gold-400 text-base">RS. ${p.price.toLocaleString()}</span>
+                                </div>
+                                <span class="text-[10px] text-emerald-400 font-medium"><i class="fa-solid fa-truck"></i> Karachi Only</span>
+                            </div>
+
+                            ${!isOut ? `
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between text-xs text-gray-300">
+                                        <span>Select Size:</span>
+                                        <select id="size-select-${p.id}" class="bg-dark-800 border border-gray-700 text-xs rounded px-2 py-1 text-gold-400 focus:outline-none">
+                                            ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                                        </select>
+                                    </div>
+                                    <button onclick="addToCart(${p.id})" class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                                    </button>
+                                </div>
+                            ` : `
+                                <button disabled class="w-full bg-dark-800 text-gray-500 font-bold py-2.5 rounded-xl text-xs cursor-not-allowed border border-gray-800">
+                                    Out Of Stock
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product || product.isOutOfStock || product.stock <= 0) {
+                showToast("Item is Out of Stock!");
+                return;
+            }
+
+            const sizeSelect = document.getElementById(`size-select-${productId}`);
+            const selectedSize = sizeSelect ? sizeSelect.value : product.sizes[0];
+
+            const cartKey = `${productId}-${selectedSize}`;
+            const existing = cart.find(item => item.key === cartKey);
+
+            if (existing) {
+                if (existing.qty >= product.stock) {
+                    showToast(`Max stock limit reached (${product.stock})`);
+                    return;
+                }
+                existing.qty++;
+            } else {
+                cart.push({
+                    key: cartKey,
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    size: selectedSize,
+                    qty: 1,
+                    maxStock: product.stock
+                });
+            }
+
+            showToast(`Added (${selectedSize}) ${product.title}`);
+            renderCart();
+            cartDrawer.classList.remove('translate-x-full');
+        }
+
+        function renderCart() {
+            cartItemsList.innerHTML = '';
+            let count = cart.reduce((acc, item) => acc + item.qty, 0);
+            cartCountBadge.innerText = count;
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-3xl mb-2 text-gray-600"></i>
+                        <p class="text-xs font-medium">Your shopping bag is empty</p>
+                    </div>
+                `;
+                updateCartTotals();
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const el = document.createElement('div');
+                el.className = "flex gap-3 bg-dark-800/60 p-3 rounded-xl border border-gray-800 items-center";
+                el.innerHTML = `
+                    <img src="${item.image}" class="w-14 h-18 object-cover rounded-lg bg-dark-950" alt="">
+                    <div class="flex-1">
+                        <h4 class="text-xs font-bold text-gray-100 line-clamp-1">${item.title}</h4>
+                        <p class="text-[10px] text-gray-400 mt-0.5">Size: <span class="text-gold-400 font-bold">${item.size}</span></p>
+                        <p class="text-xs font-extrabold text-gold-400 mt-1">RS. ${item.price.toLocaleString()}</p>
+                        
+                        <div class="flex items-center gap-2 mt-2">
+                            <button onclick="changeQty(${index}, -1)" class="w-5 h-5 bg-dark-900 border border-gray-700 rounded text-xs flex items-center justify-center hover:bg-gold-500 hover:text-black transition">-</button>
+                            <span class="text-xs font-bold text-white">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-5 h-5 bg-dark-900 border border-gray-700 rounded text-xs flex items-center justify-center hover:bg-gold-500 hover:text-black transition">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeCartItem(${index})" class="text-red-400 hover:text-red-300 text-xs p-1">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                cartItemsList.appendChild(el);
+            });
+
+            updateCartTotals();
+        }
+
+        function changeQty(index, delta) {
+            const item = cart[index];
+            if (!item) return;
+
+            if (delta > 0 && item.qty >= item.maxStock) {
+                showToast(`Stock limit reached (${item.maxStock})`);
+                return;
+            }
+
+            item.qty += delta;
+            if (item.qty <= 0) cart.splice(index, 1);
+            renderCart();
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            renderCart();
+            showToast("Item removed");
+        }
+
+        function populateAreaDropdown() {
+            const select = document.getElementById('karachiAreaSelect');
+            select.innerHTML = '';
+            karachiAreas.forEach((area, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.innerText = `${area.name} — RS. ${area.fee}`;
+                select.appendChild(opt);
+            });
+        }
+
+        function updateCartTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const areaIndex = document.getElementById('karachiAreaSelect').value || 0;
+            const deliveryFee = cart.length > 0 ? (karachiAreas[areaIndex] ? karachiAreas[areaIndex].fee : 250) : 0;
+            const total = subtotal + deliveryFee;
+
+            document.getElementById('subtotalText').innerText = `RS. ${subtotal.toLocaleString()}`;
+            document.getElementById('deliveryFeeText').innerText = `RS. ${deliveryFee.toLocaleString()}`;
+            document.getElementById('totalPayableText').innerText = `RS. ${total.toLocaleString()}`;
+        }
+
+        // WhatsApp Checkout Builder
+        function handleCheckout() {
+            if (cart.length === 0) {
+                showToast("Cart is empty!");
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+
+            if (!name || !phone || !address) {
+                showToast("Please enter your Name, Phone and Karachi Address!");
+                return;
+            }
+
+            const targetPhone = document.getElementById('whatsappTargetSelect').value;
+            const areaObj = karachiAreas[document.getElementById('karachiAreaSelect').value];
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const deliveryFee = areaObj ? areaObj.fee : 250;
+            const total = subtotal + deliveryFee;
+
+            let msg = `*NEW ZARVAN ORDER (KARACHI)*\n`;
+            msg += `---------------------------\n`;
+            msg += `*Customer:* ${name}\n`;
+            msg += `*Phone:* ${phone}\n`;
+            msg += `*Area:* ${areaObj ? areaObj.name : 'Karachi'}\n`;
+            msg += `*Address:* ${address}\n\n`;
+            msg += `*ORDERED ITEMS:*\n`;
+
+            cart.forEach((cItem, i) => {
+                msg += `${i+1}. ${cItem.title} (${cItem.size}) x${cItem.qty} = RS. ${(cItem.price * cItem.qty).toLocaleString()}\n`;
+            });
+
+            msg += `\n*Subtotal:* RS. ${subtotal.toLocaleString()}\n`;
+            msg += `*Karachi Delivery:* RS. ${deliveryFee.toLocaleString()}\n`;
+            msg += `*TOTAL PAYABLE:* RS. ${total.toLocaleString()}\n`;
+
+            // Deduct stock
+            cart.forEach(cItem => {
+                const p = products.find(prod => prod.id === cItem.id);
+                if (p) {
+                    p.stock = Math.max(0, p.stock - cItem.qty);
+                    if (p.stock === 0) p.isOutOfStock = true;
+                }
+            });
+
+            cart = [];
+            saveData();
+            renderCart();
+            renderProducts();
+            renderCreatorInventory();
+            cartDrawer.classList.add('translate-x-full');
+
+            // Open WhatsApp with selected phone line
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://wa.me/${targetPhone}?text=${encodedMsg}`, '_blank');
+        }
+
+        // Creator Form Handlers
+        function saveNewProduct(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('prodTitle').value.trim();
+            const category = document.getElementById('prodCategory').value;
+            const price = parseFloat(document.getElementById('prodPrice').value);
+            const stock = parseInt(document.getElementById('prodStock').value);
+            const image = document.getElementById('prodImage').value.trim();
+
+            const checkedSizes = Array.from(document.querySelectorAll('.size-checkbox:checked')).map(cb => cb.value);
+
+            if (checkedSizes.length === 0) {
+                showToast("Select at least one available size!");
+                return;
+            }
+
+            const newProd = {
+                id: Date.now(),
+                title,
+                category,
+                price,
+                image,
+                sizes: checkedSizes,
+                stock,
+                isOutOfStock: stock <= 0
+            };
+
+            products.unshift(newProd);
+            saveData();
+            renderProducts();
+            renderCreatorInventory();
+            document.getElementById('addProductForm').reset();
+            showToast("New item saved to store!");
+        }
+
+        function renderCreatorInventory() {
+            const tbody = document.getElementById('creatorInventoryBody');
+            tbody.innerHTML = '';
+
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-dark-950/40";
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-white flex items-center gap-2">
+                        <img src="${p.image}" class="w-8 h-10 object-cover rounded bg-dark-950" alt="">
+                        <span class="line-clamp-1">${p.title}</span>
+                    </td>
+                    <td class="p-3"><span class="bg-dark-950 border border-gray-700 px-2 py-0.5 rounded text-[10px] text-gray-300">${p.category}</span></td>
+                    <td class="p-3 font-bold text-gold-400">RS. ${p.price.toLocaleString()}</td>
+                    <td class="p-3">
+                        <input type="number" min="0" value="${p.stock}" onchange="updateStockQty(${p.id}, this.value)" class="w-16 bg-dark-950 border border-gray-700 rounded p-1 text-center text-white focus:outline-none">
+                    </td>
+                    <td class="p-3">
+                        <button onclick="toggleStockStatus(${p.id})" class="px-2.5 py-1 rounded-full text-[10px] font-bold ${p.isOutOfStock ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                            ${p.isOutOfStock ? 'OUT OF STOCK' : 'IN STOCK'}
+                        </button>
+                    </td>
+                    <td class="p-3 text-right">
+                        <button onclick="deleteProductItem(${p.id})" class="text-red-400 hover:text-red-300 p-1.5 rounded hover:bg-dark-950">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateStockQty(id, newQty) {
+            const p = products.find(item => item.id === id);
+            if (p) {
+                p.stock = parseInt(newQty) || 0;
+                p.isOutOfStock = p.stock <= 0;
+                saveData();
+                renderProducts();
+                renderCreatorInventory();
+                showToast("Quantity updated!");
+            }
+        }
+
+        function toggleStockStatus(id) {
+            const p = products.find(item => item.id === id);
+            if (p) {
+                p.isOutOfStock = !p.isOutOfStock;
+                saveData();
+                renderProducts();
+                renderCreatorInventory();
+                showToast(`Status: ${p.isOutOfStock ? 'Out of Stock' : 'In Stock'}`);
+            }
+        }
+
+        function deleteProductItem(id) {
+            if (confirm("Delete this product from store?")) {
+                products = products.filter(p => p.id !== id);
+                saveData();
+                renderProducts();
+                renderCreatorInventory();
+                showToast("Product deleted");
+            }
+        }
+
+        function renderAdminAreaRates() {
+            const list = document.getElementById('adminAreaRatesList');
+            list.innerHTML = '';
+
+            karachiAreas.forEach((area, index) => {
+                const item = document.createElement('div');
+                item.className = "bg-dark-950 p-3 rounded-lg border border-gray-800 flex items-center justify-between text-xs";
+                item.innerHTML = `
+                    <span class="text-gray-300 font-medium">${area.name}</span>
+                    <div class="flex items-center gap-1">
+                        <span class="text-gray-500">RS.</span>
+                        <input type="number" min="0" value="${area.fee}" onchange="updateAreaDeliveryFee(${index}, this.value)" class="w-16 bg-dark-900 border border-gray-700 rounded p-1 text-center text-gold-400 font-bold focus:outline-none">
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function updateAreaDeliveryFee(index, fee) {
+            karachiAreas[index].fee = parseFloat(fee) || 0;
+            saveData();
+            populateAreaDropdown();
+            updateCartTotals();
+            showToast("Delivery charge updated!");
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
